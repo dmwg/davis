@@ -30,7 +30,7 @@
         <img class="mb-4" src="/images/logo_africamultiple_image.svg" class="w-25">
         <h4 class="mb-4">Subscribe to one or more of the following calendars:</h4>
         
-        <div class="row w-50" id="calendars"></div>
+        <div class="row w-50 mb-3" id="calendars"></div>
         <a href="https://cal.africamultiple.uni-bayreuth.de/view/" class="btn btn-sm btn-outline-secondary mt-4">Enter Events (registered users only)</a>
         <a href="{{ path('dashboard') }}" class="btn btn-sm btn-outline-secondary mt-4">{{ "admin.interface"|trans }}</a>
       </div>
@@ -40,7 +40,7 @@
           $.getJSON('https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json', function(data) {
                   for(var i=0; i < data.url.length; i++){
                     var calurl = data.url[i].replace('https','webcal');
-                    var item = "<div class=\"col-6 col-sm-3\"><a class=\"btn btn-primary mx-1 text-wrap\" style=\"width: 10rem;\" href=\"" + calurl+"\">";
+                    var item = "<div class=\"col-6 col-sm-3\"><a class=\"btn btn-primary mx-1 text-wrap\" style=\"width: 10rem;min-height: 90px\" href=\"" + calurl+"\">";
                     if ('calnames' in data && data.calnames.length >= i){
                       item += data.calnames[i];
                     }else{
