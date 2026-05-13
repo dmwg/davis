@@ -26,23 +26,21 @@
         <script type="text/javascript" src="/js/jquery-4.0.0.min.js"></script> <!-- https://zetcode.com/javascript/jsonurl/ -->
     </head>
     <body>
-<!--
-      <div class="hero">
--->
-        <img class="mb-4" src="/images/logo_africamultiple_image.svg" class="w-25">
+      <div class="hero overflow-auto">
+        <img class="mb-4" src="/images/logo_africamultiple_image.svg" class="mw-25 position-absolute end-0" style="width:300px">
 <!--
         <a href="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json" class="btn btn-sm btn-outline-secondary mt-4">View the Calendar</a>
 -->
+
+        <h4>Select your timezone:</h4>
+        <select id="timezoneOption"><option value="Europe/Berlin">Bayreuth Time</option><option value="Africa/Nairobi">Eldoret Time</option><option value="WAT">Lagos Time</option><option value="SAST">Makhanda Time</option><option value="GMT">Ouagadougou Time</option></select>
   
-        <iframe class="open-web-calendar w-100" id="owcTimezone"
+        <iframe class="open-web-calendar w-75" id="owcTimezone"
         style="background:url('/assets/img/circular-loader.gif') center center no-repeat; border-radius: 10px; min-height: 500px;"
         src="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json&"
         sandbox="allow-scripts allow-same-origin allow-top-navigation"
         allowTransparency="true" scrolling="no"
         frameborder="0"></iframe>
-
-        <h4>Select your timezone:</h4>
-        <select id="timezoneOption"><option value="Europe/Berlin">Bayreuth Time</option><option value="Africa/Nairobi">Eldoret Time</option><option value="WAT">Lagos Time</option><option value="SAST">Makhanda Time</option><option value="GMT">Ouagadougou Time</option></select>
 
         <script>
           // TODO: Set the iframe id:
@@ -73,12 +71,12 @@
         
         <div class="row w-50 mb-3" style="min-height: 90px; margin-bottom:.5em;" id="calendars"></div>
 -->
-        <h4 class="m-4">What else?</h4>
+        <h4 class="m-4">Administration</h4>
         <a href="https://cal.africamultiple.uni-bayreuth.de/view/" class="btn btn-sm btn-outline-secondary mt-4">Enter Events (registered users only)</a>
         <a href="{{ path('dashboard') }}" class="btn btn-sm btn-outline-secondary mt-4">{{ "admin.interface"|trans }}</a>
-<!--
       </div>
       
+<!--
       <script>
         function executeOnLoad() {
           $.getJSON('https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json', function(data) {
