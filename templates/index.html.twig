@@ -28,7 +28,48 @@
     <body>
       <div class="hero">
         <img class="mb-4" src="/images/logo_africamultiple_image.svg" class="w-25">
+<!--
         <a href="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json" class="btn btn-sm btn-outline-secondary mt-4">View the Calendar</a>
+-->
+  
+        <iframe class="open-web-calendar" id="owcTimezone"
+        style="background:url('/assets/img/circular-loader.gif') center center no-repeat; border-radius: 10px; min-height: 500px;"
+        src="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json&"
+        sandbox="allow-scripts allow-same-origin allow-top-navigation"
+        allowTransparency="true" scrolling="no"
+        frameborder="0" height="600px" class="w-100"></iframe>
+
+        <!--
+          This is HTML and JavaScript that allows changing a calendar URL specific to a timezone.
+
+          TODO: Choose the time zones that you want the viewer to choose:
+        -->
+        <select id="timezoneOption"><option value="Europe/Berlin">Bayreuth Time</option><option value="Africa/Nairobi">Eldoret Time</option><option value="WAT">Lagos Time</option><option value="SAST">Makhanda Time</option><option value="GMT">Ouagadougou Time</option></select>
+
+        <script>
+          // TODO: Set the iframe id:
+          var calendarIFrameID = "owcTimezone";
+          var originalUrl;  // the oririginal URL of the iframe
+          var calendarIFrame; // the stored iframe as a variable
+
+          // Save the original URL
+          function setInitialTimezone() {
+            calendarIFrame = document.getElementById(calendarIFrameID);
+            originalUrl = calendarIFrame.src;
+            changeTimezone();
+          }
+
+          // Change to the selected timezone
+          function changeTimezone() {
+            console.log("change timezone: " + timezoneOption.value);
+            calendarIFrame.src = originalUrl + (timezoneOption.value ? "timezone=" + timezoneOption.value : "");
+            console.log("url: " + calendarIFrame.src);
+          }
+
+          window.addEventListener("load", setInitialTimezone);
+          timezoneOption.onchange = changeTimezone;
+        </script>
+        
         <h4 class="m-4">Subscribe to one or more of the following calendars:</h4>
         
         <div class="row w-50 mb-3" style="min-height: 90px; margin-bottom:.5em;" id="calendars"></div>
