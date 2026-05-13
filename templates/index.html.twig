@@ -47,9 +47,7 @@
               }else{
                 $('#calendars').append("<li><a href=\"" + data.url[i] +"\">" + data.url[i] + "</a></li>");
               }
-            });
-        }).done(function() {
-          console.log( "second success" );
+            }
         })
         .fail(function(e) {
           console.log( "error" );
