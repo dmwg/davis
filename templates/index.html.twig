@@ -26,7 +26,9 @@
         <script type="text/javascript" src="/js/jquery-4.0.0.min.js"></script> <!-- https://zetcode.com/javascript/jsonurl/ -->
     </head>
     <body>
+<!--
       <div class="hero">
+-->
         <img class="mb-4" src="/images/logo_africamultiple_image.svg" class="w-25">
 <!--
         <a href="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json" class="btn btn-sm btn-outline-secondary mt-4">View the Calendar</a>
@@ -66,11 +68,15 @@
           timezoneOption.onchange = changeTimezone;
         </script>
         
+<!--
         <h4 class="m-4">Subscribe to one or more of the following calendars:</h4>
         
         <div class="row w-50 mb-3" style="min-height: 90px; margin-bottom:.5em;" id="calendars"></div>
+-->
+        <h4 class="m-4">What else?</h4>
         <a href="https://cal.africamultiple.uni-bayreuth.de/view/" class="btn btn-sm btn-outline-secondary mt-4">Enter Events (registered users only)</a>
         <a href="{{ path('dashboard') }}" class="btn btn-sm btn-outline-secondary mt-4">{{ "admin.interface"|trans }}</a>
+<!--
       </div>
       
       <script>
@@ -97,5 +103,6 @@
             executeOnLoad();
         });
       </script>
+-->
     </body>
 </html>
