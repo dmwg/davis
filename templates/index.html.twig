@@ -40,27 +40,19 @@
   function executeOnLoad() {
     $.getJSON('https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json', function(data) {
           console.log(data);
-           var items = [];
-          $.each( data, function( key, val ) {
-            items.push( "<li id='" + key + "'>" + val + "</li>" );
-          });
-         
-          $( "<ul/>", {
-            "class": "my-new-list",
-            html: items.join( "" )
-          }).appendTo( "body" );
-            //~ console.log(data.url);
-            //~ $.each(data.url, function(key, val) {
-                //~ $('#calendars').append("<li>" + val + "</li>");
-            //~ });
-        //~ }).done(function() {
-          //~ console.log( "second success" );
-        //~ })
-        //~ .fail(function() {
-          //~ console.log( "error" );
-        //~ })
-        //~ .always(function() {
-          //~ console.log( "complete" );
+            console.log(data.url);
+            $.each(data.url, function(key, val) {
+                $('#calendars').append("<li>" + val + "</li>");
+            });
+        }).done(function() {
+          console.log( "second success" );
+        })
+        .fail(function(e) {
+          console.log( "error" );
+          console.log( e );
+        })
+        .always(function() {
+          console.log( "complete" );
         });
   }
   // A $( document ).ready() block.
