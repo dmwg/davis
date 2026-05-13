@@ -40,18 +40,18 @@
           $.getJSON('https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json', function(data) {
                   for(var i=0; i < data.url.length; i++){
                     var calurl = data.url[i].replace('https','webcal');
-                    $('#calendars').append("<div class=\"col-6 col-sm-3\">");
+                    var item = "<div class=\"col-6 col-sm-3\"><a class=\"btn btn-primary mx-1 text-wrap\" style=\"width: 10rem;\" href=\"" + calurl+"\">";
                     if ('calnames' in data && data.calnames.length >= i){
-                      $('#calendars').append("<a class=\"btn btn-primary mx-1 text-wrap\" style=\"width: 10rem;\" href=\"" + calurl +"\">" + data.calnames[i] + "</a>");
+                      item += data.calnames[i];
                     }else{
-                      $('#calendars').append("<a class=\"btn btn-primary mx-1 text-wrap\" style=\"width: 10rem;\" href=\"" + calurl +"\">" + data.url[i] + "</a>");
+                      item += data.url[i];
                     }
-                    $('#calendars').append("<div/>");
-                    console.log(i);
+                    item += "</a><div/>";
                     if(i % 2 == 0){
                       console.log("linebreak");
-                      $('#calendars').append("<div class=\"w-100\"></div>");
+                      item += "<div class=\"w-100\"></div>";
                     }
+                    $('#calendars').append(item);
                   }
               });
         }
