@@ -60,9 +60,7 @@
 
         // Change to the selected timezone
         function changeTimezone() {
-          console.log("change timezone: " + timezoneOption.value);
           calendarIFrame.src = originalUrl + (timezoneOption.value ? "timezone=" + timezoneOption.value : "");
-          console.log("url: " + calendarIFrame.src);
         }
 
         window.addEventListener("load", setInitialTimezone);
