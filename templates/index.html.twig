@@ -29,8 +29,8 @@
       <div class="hero">
         <img class="mb-2" src="/images/logo_africamultiple_image.svg" width="300px">
         <h3 class="mb-4">Africa Multiple Calendars</h3>
-        <ul id="calendars">
-        </ul> 
+        
+        <div class="d-flex justify-content-center" id="calendars"></div>
         <a href="https://cal.africamultiple.uni-bayreuth.de/view/" class="btn btn-sm btn-outline-secondary mt-4">Enter Events (registered users only)</a>
         <a href="{{ path('dashboard') }}" class="btn btn-sm btn-outline-secondary mt-4">{{ "admin.interface"|trans }}</a>
       </div>
@@ -42,10 +42,11 @@
           console.log(data);
             console.log(data.url);
             for(let i=0; i < data.url.length; i++){
+              var calurl = data.url[i].replace('https','webcal');
               if ('calnames' in data && data.calnames.length >= i){
-                $('#calendars').append("<li><a href=\"" + data.url[i].replace('https','webcal') +"\">" + data.calnames[i] + "</a></li>");
+                $('#calendars').append("<a class=\"btn btn-primary\" href=\"" + calurl +"\">" + data.calnames[i] + "</a>");
               }else{
-                $('#calendars').append("<li><a href=\"" + data.url[i].replace('https','webcal') +"\">" + data.url[i] + "</a></li>");
+                $('#calendars').append("<a class=\"btn btn-primary\" href=\"" + calurl +"\">" + data.url[i] + "</a>");
               }
             }
         })
