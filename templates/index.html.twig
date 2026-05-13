@@ -26,15 +26,15 @@
     </head>
     <body>
       <div class="hero">
-        <div class="d-block w-100">
-          <img src="/images/logo_africamultiple_image.svg" class="mb-4 mw-25 position-absolute top-0 end-0 mr-5" style="width:300px; right:50px">
+        <div class="d-block w-100 p-5">
+          <img src="/images/logo_africamultiple_image.svg" class="mb-4 mw-25 position-relative top-0 end-0" style="width:300px;">
         </div>
 
         <h4>Select your timezone:</h4>
         <select id="timezoneOption"><option value="Europe/Berlin">Bayreuth Time</option><option value="Africa/Nairobi">Eldoret Time</option><option value="WAT">Lagos Time</option><option value="SAST">Makhanda Time</option><option value="GMT">Ouagadougou Time</option></select>
   
         <iframe class="open-web-calendar mw-75 mb-5" id="owcTimezone"
-        style="background:url('/assets/img/circular-loader.gif') center center no-repeat; border-radius: 10px; min-height: 500px; width:90%"
+        style="background:url('https://cal.africamultiple.uni-bayreuth.de/owc/static/img/loaders/circular-loader.gif') center center no-repeat; border-radius: 10px; min-height: 500px; width:90%"
         src="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json&"
         sandbox="allow-scripts allow-same-origin allow-top-navigation"
         allowTransparency="true" scrolling="no"
