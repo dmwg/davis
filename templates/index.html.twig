@@ -23,12 +23,14 @@
           }
         </style>
         <script type="text/javascript" src="/js/color.mode.toggler.js"></script>
+<!--
         <script type="text/javascript" src="/js/jquery-4.0.0.min.js"></script> <!-- https://zetcode.com/javascript/jsonurl/ -->
+-->
     </head>
     <body>
       <div class="hero overflow-auto">
-        <div class="w-100">
-          <img class="mb-4" src="/images/logo_africamultiple_image.svg" class="mw-25 position-absolute top-0 end-0" style="width:300px">
+        <div class="w-100 position-relative">
+          <img src="/images/logo_africamultiple_image.svg" class="mb-4 mw-25 position-absolute top-0 end-0" style="width:300px">
         </div>
 <!--
         <a href="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json" class="btn btn-sm btn-outline-secondary mt-4">View the Calendar</a>
@@ -37,36 +39,12 @@
         <h4>Select your timezone:</h4>
         <select id="timezoneOption"><option value="Europe/Berlin">Bayreuth Time</option><option value="Africa/Nairobi">Eldoret Time</option><option value="WAT">Lagos Time</option><option value="SAST">Makhanda Time</option><option value="GMT">Ouagadougou Time</option></select>
   
-        <iframe class="open-web-calendar mw-75" id="owcTimezone"
+        <iframe class="open-web-calendar mw-75 mb-5" id="owcTimezone"
         style="background:url('/assets/img/circular-loader.gif') center center no-repeat; border-radius: 10px; min-height: 500px; width:90%"
         src="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json&"
         sandbox="allow-scripts allow-same-origin allow-top-navigation"
         allowTransparency="true" scrolling="no"
         frameborder="0"></iframe>
-
-        <script>
-          // TODO: Set the iframe id:
-          var calendarIFrameID = "owcTimezone";
-          var originalUrl;  // the oririginal URL of the iframe
-          var calendarIFrame; // the stored iframe as a variable
-
-          // Save the original URL
-          function setInitialTimezone() {
-            calendarIFrame = document.getElementById(calendarIFrameID);
-            originalUrl = calendarIFrame.src;
-            changeTimezone();
-          }
-
-          // Change to the selected timezone
-          function changeTimezone() {
-            console.log("change timezone: " + timezoneOption.value);
-            calendarIFrame.src = originalUrl + (timezoneOption.value ? "timezone=" + timezoneOption.value : "");
-            console.log("url: " + calendarIFrame.src);
-          }
-
-          window.addEventListener("load", setInitialTimezone);
-          timezoneOption.onchange = changeTimezone;
-        </script>
         
 <!--
         <h4 class="m-4">Subscribe to one or more of the following calendars:</h4>
@@ -79,6 +57,30 @@
         <a href="{{ path('dashboard') }}" class="btn btn-sm btn-outline-secondary mt-4">{{ "admin.interface"|trans }}</a>
       </div>
       
+
+      <script>
+        // TODO: Set the iframe id:
+        var calendarIFrameID = "owcTimezone";
+        var originalUrl;  // the oririginal URL of the iframe
+        var calendarIFrame; // the stored iframe as a variable
+
+        // Save the original URL
+        function setInitialTimezone() {
+          calendarIFrame = document.getElementById(calendarIFrameID);
+          originalUrl = calendarIFrame.src;
+          changeTimezone();
+        }
+
+        // Change to the selected timezone
+        function changeTimezone() {
+          console.log("change timezone: " + timezoneOption.value);
+          calendarIFrame.src = originalUrl + (timezoneOption.value ? "timezone=" + timezoneOption.value : "");
+          console.log("url: " + calendarIFrame.src);
+        }
+
+        window.addEventListener("load", setInitialTimezone);
+        timezoneOption.onchange = changeTimezone;
+      </script>
 <!--
       <script>
         function executeOnLoad() {
