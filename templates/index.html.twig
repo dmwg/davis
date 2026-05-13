@@ -27,10 +27,10 @@
     </head>
     <body>
       <div class="hero">
-        <img class="mb-2" src="/images/logo_africamultiple_image.svg" width="300px">
-        <h3 class="mb-4">Africa Multiple Calendars</h3>
+        <img class="mb-4" src="/images/logo_africamultiple_image.svg" class="w-25">
+        <h4 class="mb-4">Subscribe to one or more of the following calendars:</h4>
         
-        <div class="d-flex justify-content-center w-50 p-3 " id="calendars"></div>
+        <div class="d-flex justify-content-center w-50 p-3 text-wrap" id="calendars"></div>
         <a href="https://cal.africamultiple.uni-bayreuth.de/view/" class="btn btn-sm btn-outline-secondary mt-4">Enter Events (registered users only)</a>
         <a href="{{ path('dashboard') }}" class="btn btn-sm btn-outline-secondary mt-4">{{ "admin.interface"|trans }}</a>
       </div>
@@ -44,9 +44,9 @@
             for(let i=0; i < data.url.length; i++){
               var calurl = data.url[i].replace('https','webcal');
               if ('calnames' in data && data.calnames.length >= i){
-                $('#calendars').append("<a class=\"btn btn-primary mx-1\" href=\"" + calurl +"\">" + data.calnames[i] + "</a>");
+                $('#calendars').append("<a class=\"btn btn-primary mx-1 text-wrap\" href=\"" + calurl +"\">" + data.calnames[i] + "</a>");
               }else{
-                $('#calendars').append("<a class=\"btn btn-primary mx-1\" href=\"" + calurl +"\">" + data.url[i] + "</a>");
+                $('#calendars').append("<a class=\"btn btn-primary mx-1 text-wrap\" href=\"" + calurl +"\">" + data.url[i] + "</a>");
               }
             }
         })
