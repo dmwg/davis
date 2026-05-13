@@ -32,18 +32,14 @@
         <a href="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json" class="btn btn-sm btn-outline-secondary mt-4">View the Calendar</a>
 -->
   
-        <iframe class="open-web-calendar" id="owcTimezone"
+        <iframe class="open-web-calendar w-100" id="owcTimezone"
         style="background:url('/assets/img/circular-loader.gif') center center no-repeat; border-radius: 10px; min-height: 500px;"
         src="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json&"
         sandbox="allow-scripts allow-same-origin allow-top-navigation"
         allowTransparency="true" scrolling="no"
-        frameborder="0" height="600px" class="w-100"></iframe>
+        frameborder="0"></iframe>
 
-        <!--
-          This is HTML and JavaScript that allows changing a calendar URL specific to a timezone.
-
-          TODO: Choose the time zones that you want the viewer to choose:
-        -->
+        <h4>Select your timezone:</h4>
         <select id="timezoneOption"><option value="Europe/Berlin">Bayreuth Time</option><option value="Africa/Nairobi">Eldoret Time</option><option value="WAT">Lagos Time</option><option value="SAST">Makhanda Time</option><option value="GMT">Ouagadougou Time</option></select>
 
         <script>
