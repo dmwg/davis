@@ -36,34 +36,28 @@
       </div>
       
       <script>
-
-  function executeOnLoad() {
-    $.getJSON('https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json', function(data) {
-          console.log(data);
-            console.log(data.url);
-            for(let i=0; i < data.url.length; i++){
-              var calurl = data.url[i].replace('https','webcal');
-              $('#calendars').append("<div class=\"col-6 col-sm-3\">");
-              if ('calnames' in data && data.calnames.length >= i){
-                $('#calendars').append("<a class=\"btn btn-primary mx-1 text-wrap\" style=\"width: 10rem;\" href=\"" + calurl +"\">" + data.calnames[i] + "</a>");
-              }else{
-                $('#calendars').append("<a class=\"btn btn-primary mx-1 text-wrap\" style=\"width: 10rem;\" href=\"" + calurl +"\">" + data.url[i] + "</a>");
-              }
-              $('#calendars').append("<div/>");
-              if(i % 2 == 0){
-                $('#calendars').append("<div class=\"w-100\"></div>");
-              }
-            }
-        })
-        .fail(function(e) {
-          console.log( "error" );
-          console.log( e );
+        function executeOnLoad() {
+          $.getJSON('https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json', function(data) {
+                  for(var i=0; i < data.url.length; i++){
+                    var calurl = data.url[i].replace('https','webcal');
+                    $('#calendars').append("<div class=\"col-6 col-sm-3\">");
+                    if ('calnames' in data && data.calnames.length >= i){
+                      $('#calendars').append("<a class=\"btn btn-primary mx-1 text-wrap\" style=\"width: 10rem;\" href=\"" + calurl +"\">" + data.calnames[i] + "</a>");
+                    }else{
+                      $('#calendars').append("<a class=\"btn btn-primary mx-1 text-wrap\" style=\"width: 10rem;\" href=\"" + calurl +"\">" + data.url[i] + "</a>");
+                    }
+                    $('#calendars').append("<div/>");
+                    console.log(i);
+                    if(i % 2 == 0){
+                      console.log("linebreak");
+                      $('#calendars').append("<div class=\"w-100\"></div>");
+                    }
+                  }
+              });
+        }
+        $( document ).ready(function() {
+            executeOnLoad();
         });
-  }
-  // A $( document ).ready() block.
-$( document ).ready(function() {
-    executeOnLoad();
-});
       </script>
     </body>
 </html>
