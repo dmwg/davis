@@ -38,15 +38,28 @@
       <script>
 
   function executeOnLoad() {
+    console.log("executeOnLoad");
     $.getJSON('https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json', function(data) {
             console.log(data);
             console.log(data.url);
             $.each(data.url, function(key, val) {
                 $('#calendars').append("<li>" + val + "</li>");
             });
+        }).done(function() {
+          console.log( "second success" );
+        })
+        .fail(function() {
+          console.log( "error" );
+        })
+        .always(function() {
+          console.log( "complete" );
         });
   }
-  window.onload = executeOnLoad;
+  // A $( document ).ready() block.
+$( document ).ready(function() {
+    console.log( "ready!" );
+    executeOnLoad();
+});
       </script>
     </body>
 </html>
