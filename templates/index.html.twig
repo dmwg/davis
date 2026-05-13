@@ -43,9 +43,9 @@
             console.log(data.url);
             for(let i=0; i < data.url.length; i++){
               if ('calnames' in data && data.calnames.length >= i){
-                $('#calendars').append("<li><a href=\"" + data.url[i] +"\">" + data.calnames[i] + "</a></li>");
+                $('#calendars').append("<li><a href=\"" + data.url[i].replace('https','webcal') +"\">" + data.calnames[i] + "</a></li>");
               }else{
-                $('#calendars').append("<li><a href=\"" + data.url[i] +"\">" + data.url[i] + "</a></li>");
+                $('#calendars').append("<li><a href=\"" + data.url[i].replace('https','webcal') +"\">" + data.url[i] + "</a></li>");
               }
             }
         })
