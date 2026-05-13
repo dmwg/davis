@@ -39,7 +39,6 @@
 
   function executeOnLoad() {
     $.getJSON('https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json', function(data) {
-          data = JSON.parse(data);
           console.log(data);
             console.log(data.url);
             $.each(data.url, function(key, val) {
@@ -51,9 +50,6 @@
         .fail(function(e) {
           console.log( "error" );
           console.log( e );
-        })
-        .always(function() {
-          console.log( "complete" );
         });
   }
   // A $( document ).ready() block.
