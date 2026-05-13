@@ -23,13 +23,30 @@
           }
         </style>
         <script type="text/javascript" src="/js/color.mode.toggler.js"></script>
+        <script type="text/javascript" src="/js/jquery-4.0.0.slim.min.js"></script>
     </head>
     <body>
       <div class="hero">
         <img class="mb-2" src="/images/logo_africamultiple_image.svg" width="300px">
         <h3 class="mb-4">Africa Multiple Calendars</h3>
+        <ul id="calendars">
+        </ul> 
         <a href="https://cal.africamultiple.uni-bayreuth.de/view/" class="btn btn-sm btn-outline-secondary mt-4">Enter Events (registered users only)</a>
         <a href="{{ path('dashboard') }}" class="btn btn-sm btn-outline-secondary mt-4">{{ "admin.interface"|trans }}</a>
       </div>
+      
+      <script>
+
+  function executeOnLoad() {
+    $.getJSON('https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json', function(data) {
+            console.log(data);
+            console.log(data.url);
+            $.each(data.url, function(key, val) {
+                $('#calendars').append("<li>" + val + "</li>");
+            });
+        });
+  }
+  window.onload = executeOnLoad;
+      </script>
     </body>
 </html>
