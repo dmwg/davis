@@ -76,6 +76,7 @@ services:
             $LDAPCertificateCheckingStrategy: "%env(LDAP_CERTIFICATE_CHECKING_STRATEGY)%"
             $autoCreate: "%env(bool:LDAP_AUTH_USER_AUTOCREATE)%"
             $whichFirst: "%env(AUTH_WHICH_PROVIDER_FIRST)%"
+            $skipLdapForUsernames: "%env(AUTH_LDAP_SKIP_USERS_PATTERN)%"
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
