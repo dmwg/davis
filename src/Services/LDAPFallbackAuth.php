@@ -72,7 +72,7 @@ final class LDAPFallbackAuth extends AbstractBasic
     protected function validateUserPass($username, $password): bool
     {
         $skipLdap = false;
-        if(!is_null($this->skipLdapForUsernames){
+        if(!is_null($this->skipLdapForUsernames)){
           $res = preg_match($this->skipLdapForUsernames,$username);
           $skipLdap = ($res == 1);
         }
