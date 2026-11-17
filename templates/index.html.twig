@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,62 +9,173 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <link rel="manifest" href="/site.webmanifest">
         <link rel="stylesheet" href="/css/bootstrap.min.css" />
-        <style type="text/css">
-          .hero {
+        <style>
+          html, body {
+            height: 100%;
+          }
+
+          /* Page is a full-height column: header, calendar, footer */
+          .page {
+            display: flex;
+            flex-direction: column;
             height: 100vh;
-            overflow: auto;
+            height: 100dvh; /* accounts for mobile browser bars */
+            padding: 1rem 1.5rem;
+            gap: 1rem;
+          }
+
+          /* Header: timezone picker left, logo right */
+          .page-header {
             display: flex;
             align-items: center;
-            justify-content: center;
-            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex: 0 0 auto;
           }
-          .hero .list-group {
-            width: 240px;
+
+          .timezone-picker {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin: 0;
+          }
+
+          .timezone-picker label {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 0;
+          }
+
+          .timezone-picker .form-select {
+            width: auto;
+            min-width: 14rem;
+          }
+
+          .site-logo {
+            display: block;
+            height: 80px;
+            width: auto;
+            max-width: 40vw;
+            flex-shrink: 0;
+          }
+
+          /* Calendar takes all remaining vertical space */
+          .calendar-wrapper {
+            flex: 1 1 auto;
+            min-height: 400px;
+            display: flex;
+          }
+
+          .calendar-frame {
+            flex: 1 1 auto;
+            width: 100%;
+            height: 100%;
+            border: 1px solid var(--bs-border-color);
+            border-radius: 10px;
+            background: url('https://cal.africamultiple.uni-bayreuth.de/owc/static/img/loaders/circular-loader.gif') center center no-repeat;
+          }
+
+          /* Footer: admin links side by side */
+          .admin-links {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem 1rem;
+          }
+
+          .admin-links h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 0 0.5rem 0 0;
+          }
+
+          .admin-links .btn {
+            padding: 0.6rem 1.4rem;
+            font-size: 1rem;
+          }
+
+          @media (max-width: 640px) {
+            .page {
+              padding: 0.75rem;
+            }
+
+            .page-header {
+              flex-direction: column-reverse;
+              align-items: stretch;
+            }
+
+            .site-logo {
+              height: 56px;
+              align-self: flex-end;
+            }
+
+            .timezone-picker .form-select {
+              flex: 1 1 100%;
+              min-width: 0;
+            }
+
+            .admin-links .btn {
+              flex: 1 1 100%;
+            }
           }
         </style>
-        <script type="text/javascript" src="/js/color.mode.toggler.js"></script>
+        <script src="/js/color.mode.toggler.js"></script>
     </head>
     <body>
-      <div class="hero">
-        <div class="d-flex justify-content-end w-100 p-5 mt-3">
-          <img src="/images/logo_africamultiple_image.svg" class="m-4 mw-25" style="width:300px;">
-        </div>
+      <div class="page">
 
-        <h4>Select your timezone:</h4>
-        <select id="timezoneOption"><option value="Europe/Berlin">Bayreuth Time</option><option value="Africa/Nairobi">Eldoret Time</option><option value="WAT">Lagos Time</option><option value="SAST">Makhanda Time</option><option value="GMT">Ouagadougou Time</option></select>
-  
-        <iframe class="open-web-calendar mw-75 mb-5" id="owcTimezone"
-        style="background:url('https://cal.africamultiple.uni-bayreuth.de/owc/static/img/loaders/circular-loader.gif') center center no-repeat; border-radius: 10px; min-height: 500px; width:90%"
-        src="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json&"
-        sandbox="allow-scripts allow-same-origin allow-top-navigation"
-        allowTransparency="true" scrolling="no"
-        frameborder="0"></iframe>
-        
-        <h4 class="mt-5">Administration</h4>
-        <a href="https://cal.africamultiple.uni-bayreuth.de/view/" class="btn btn-sm btn-outline-secondary mt-4">Enter Events (registered users only)</a>
-        <a href="{{ path('dashboard') }}" class="btn btn-sm btn-outline-secondary mt-4">{{ "admin.interface"|trans }}</a>
+        <header class="page-header">
+          <div class="timezone-picker">
+            <label for="timezoneOption">Select your timezone:</label>
+            <select id="timezoneOption" class="form-select">
+              <option value="Europe/Berlin">Bayreuth Time</option>
+              <option value="Africa/Nairobi">Eldoret Time</option>
+              <option value="WAT">Lagos Time</option>
+              <option value="SAST">Makhanda Time</option>
+              <option value="GMT">Ouagadougou Time</option>
+            </select>
+          </div>
+
+          <img src="/images/logo_africamultiple_image.svg"
+               alt="Africa Multiple Cluster of Excellence"
+               class="site-logo">
+        </header>
+
+        <main class="calendar-wrapper">
+          <iframe id="owcTimezone"
+                  class="open-web-calendar calendar-frame"
+                  title="Africa Multiple event calendar"
+                  src="https://cal.africamultiple.uni-bayreuth.de/owc/calendar.html?specification_url=https://cal.africamultiple.uni-bayreuth.de/specs/specification_all.json&"
+                  sandbox="allow-scripts allow-same-origin allow-top-navigation"
+                  allowtransparency="true"
+                  scrolling="no"></iframe>
+        </main>
+
+        <footer class="admin-links">
+          <h2>Administration</h2>
+          <a href="https://cal.africamultiple.uni-bayreuth.de/view/" class="btn btn-outline-secondary">Enter Events (registered users only)</a>
+          <a href="{{ path('dashboard') }}" class="btn btn-outline-secondary">{{ "admin.interface"|trans }}</a>
+        </footer>
+
       </div>
-      
 
       <script>
-        var calendarIFrameID = "owcTimezone";
-        var originalUrl;  // the oririginal URL of the iframe
-        var calendarIFrame; // the stored iframe as a variable
+        (function () {
+          var calendarIFrame = document.getElementById("owcTimezone");
+          var timezoneSelect = document.getElementById("timezoneOption");
+          var originalUrl = calendarIFrame.src; // the original URL of the iframe
 
-        // Save the original URL
-        function setInitialTimezone() {
-          calendarIFrame = document.getElementById(calendarIFrameID);
-          originalUrl = calendarIFrame.src;
-          changeTimezone();
-        }
+          // Point the calendar at the selected timezone
+          function changeTimezone() {
+            calendarIFrame.src = originalUrl +
+              (timezoneSelect.value ? "timezone=" + encodeURIComponent(timezoneSelect.value) : "");
+          }
 
-        // Change to the selected timezone
-        function changeTimezone() {
-          calendarIFrame.src = originalUrl + (timezoneOption.value ? "timezone=" + timezoneOption.value : "");
-        }
-
-        window.addEventListener("load", setInitialTimezone);
-        timezoneOption.onchange = changeTimezone;
+          timezoneSelect.addEventListener("change", changeTimezone);
+          window.addEventListener("load", changeTimezone);
+        })();
       </script>
     </body>
 </html>
